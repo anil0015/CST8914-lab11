@@ -34,5 +34,17 @@ accordionBtns.forEach((accordion) => {
       e.preventDefault();
       accordion.click();
     }
+    
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      const next = buttons[index + 1] || buttons[0];
+      next.focus();
+    }
+
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      const prev = buttons[index - 1] || buttons[buttons.length - 1];
+      prev.focus();
+    }
   });
 });
