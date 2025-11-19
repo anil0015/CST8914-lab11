@@ -44,14 +44,6 @@ accordionBtns.forEach((accordion, index) => {
         e.preventDefault();
         accordionBtns[(index - 1 + accordionBtns.length) % accordionBtns.length].focus();
         break;
-      case "Home":
-        e.preventDefault();
-        accordionBtns[0].focus();
-        break;
-      case "End":
-        e.preventDefault();
-        accordionBtns[accordionBtns.length - 1].focus();
-        break;
     }
   });
 });
