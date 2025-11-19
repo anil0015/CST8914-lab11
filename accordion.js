@@ -11,7 +11,7 @@
 
 const accordionBtns = document.querySelectorAll(".accordion");
 
-accordionBtns.forEach((accordion) => {
+accordionBtns.forEach((accordion, index) => {
   accordion.onclick = function () {
     this.classList.toggle("is-open");
 
@@ -30,21 +30,28 @@ accordionBtns.forEach((accordion) => {
     }
   };
   accordion.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      accordion.click();
-    }
-    
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      const next = buttons[index + 1] || buttons[0];
-      next.focus();
-    }
-
-    if (e.key === "ArrowUp") {
-      e.preventDefault();
-      const prev = buttons[index - 1] || buttons[buttons.length - 1];
-      prev.focus();
+    switch (e.key) {
+      case "Enter":
+      case " ":
+        e.preventDefault();
+        accordion.click();
+        break;
+      case "ArrowDown":
+        e.preventDefault();
+        accordionBtns[(index + 1) % accordionBtns.length].focus();
+        break;
+      case "ArrowUp":
+        e.preventDefault();
+        accordionBtns[(index - 1 + accordionBtns.length) % accordionBtns.length].focus();
+        break;
+      case "Home":
+        e.preventDefault();
+        accordionBtns[0].focus();
+        break;
+      case "End":
+        e.preventDefault();
+        accordionBtns[accordionBtns.length - 1].focus();
+        break;
     }
   });
 });
